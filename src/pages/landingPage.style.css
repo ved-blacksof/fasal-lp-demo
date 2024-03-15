@@ -1,0 +1,14 @@
+.container-sm {
+  max-width: 1024px;
+}
+
+.text-green {
+  color: #00613c;
+}
+.text-yellow {
+  color: #ffe366;
+}
+
+.bg-green {
+  background: #f3edd1;
+}
