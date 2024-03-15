@@ -3,43 +3,56 @@
 
 <section id="contact-us" class="lets-connect-section relative">
   <div class="container-sm">
-    <div data-aos="fade-up" class="section-title text-center">
+    <div data-aos="fade-up" class="text-center">
       <h1 class="text-green">
         Any messages for us or our partner <br /> farmers? We are listening.
       </h1>
     </div>
-    <form id="myForm">
-      <label for="name">Your Name:</label>
-      <input type="text" id="name" name="name" required />
-      <span class="error-message"></span>
-      <!-- <br />
-      <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" name="phone" required />
-      <span class="error-message"></span>
-      <br />
-      <label for="area">Area:</label>
-      <input type="text" id="area" name="area" required />
-      <span class="error-message"></span>
-      <br />
-      <label for="society">Society:</label>
-      <input type="text" id="society" name="society" required />
-      <span class="message"></span>
-      <br />
-      <label for="pincode">Pincode:</label>
-      <input
-        type="text"
-        id="pincode"
-        name="pincode"
-        required
-        pattern="[0-9]{6}"
-      />
-      <span class="error-message"></span>
-      <br />
-      <label for="message">Your Message:</label>
-      <textarea id="message" name="message" required></textarea>
-      <span class="error-message"></span>
-      <br /> -->
-      <button type="submit">Send Email</button>
+    <form id="myForm" class="row border-md p-md-5 p-2 gap-x-2 gap-y">
+      <div class="d-flex gap-1 mt-2 flex-column col-md-6">
+        <label for="name">Your Name:</label>
+        <input class="input-style" type="text" id="name" name="name" />
+        <span class="error-message"></span>
+      </div>
+
+      <div class="d-flex gap-1 mt-2 flex-column col-md-6">
+        <label for="phone">Phone Number:</label>
+        <input class="input-style" type="tel" id="phone" name="phone" />
+        <span class="error-message"></span>
+      </div>
+
+      <div class="d-flex gap-1 mt-2 flex-column col-md-6">
+        <label for="area">Area:</label>
+        <input class="input-style" type="text" id="area" name="area" />
+        <span class="error-message"></span>
+      </div>
+
+      <div class="d-flex gap-1 mt-2 flex-column col-md-6">
+        <label for="society">Society:</label>
+        <input class="input-style" type="text" id="society" name="society" />
+        <span class="error-message"></span>
+      </div>
+
+      <div class="d-flex gap-1 mt-2 flex-column col-md-6">
+        <label for="pincode">Pincode:</label>
+        <input
+          class="input-style"
+          type="text"
+          id="pincode"
+          name="pincode"
+          pattern="[0-9]{6}"
+        />
+        <span class="error-message"></span>
+      </div>
+
+      <div class="d-flex gap-1 mt-2 flex-column">
+        <label for="message">Your Message:</label>
+        <textarea rows="5" class="input-style" id="message" name="message"
+        ></textarea>
+        <span class="error-message"></span>
+      </div>
+
+      <button class="mx-auto mt-3" type="submit">Send Email</button>
     </form>
   </div>
 </section>
@@ -47,14 +60,14 @@
 <script>
   import axios from "axios";
   const name = (document.getElementById("name") as HTMLInputElement).value;
-  // const phone = (document.getElementById("phone") as HTMLInputElement).value;
-  // const area = (document.getElementById("area") as HTMLInputElement).value;
-  // const society = (document.getElementById("society") as HTMLInputElement)
-  //   .value;
-  // const pincode = (document.getElementById("pincode") as HTMLInputElement)
-  //   .value;
-  // const message = (document.getElementById("message") as HTMLInputElement)
-  //   .value;
+  const phone = (document.getElementById("phone") as HTMLInputElement).value;
+  const area = (document.getElementById("area") as HTMLInputElement).value;
+  const society = (document.getElementById("society") as HTMLInputElement)
+    .value;
+  const pincode = (document.getElementById("pincode") as HTMLInputElement)
+    .value;
+  const message = (document.getElementById("message") as HTMLInputElement)
+    .value;
 
   const apiKey = import.meta.env.SENDGRID_AP;
   const url = "https://api.sendgrid.com/v3/mail/send";
@@ -82,7 +95,7 @@
     .getElementById("myForm")
     .addEventListener("submit", async function (event) {
       event.preventDefault();
-      // validate();
+      validate();
       try {
         const response = await axios.post(url, data, {
           headers: {
@@ -108,6 +121,16 @@
         "Name is required";
       isValid = false;
     }
+    if (area.trim() === "") {
+      document.getElementById("area").nextElementSibling.textContent =
+        "Area is required";
+      isValid = false;
+    }
+    if (society.trim() === "") {
+      document.getElementById("society").nextElementSibling.textContent =
+        "Society is required";
+      isValid = false;
+    }
 
     if (!phone.match(/^\d+$/)) {
       document.getElementById("phone").nextElementSibling.textContent =
@@ -130,7 +153,29 @@
     if (isValid) {
       console.log("Form is valid, send email using server-side script");
     } else {
-      alert("Please fix the errors before submitting the form.");
+      console.log("Please fix the errors before submitting the form.");
     }
   }
 </script>
+
+<style>
+  .error-message {
+    color: red;
+    font-size: 14px;
+  }
+  .input-style:focus {
+    outline: 1px solid gray;
+  }
+  .input-style {
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 6px 8px;
+  }
+  button {
+    padding: 10px 30px;
+    width: fit-content;
+    border: none;
+    border-radius: 10px;
+    background: greenyellow;
+  }
+</style>
