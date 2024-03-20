@@ -1,0 +1,148 @@
+<section class="fasal-video-wrp px-md-5 py-md-5 py-4">
+  <div
+    class="border rounded-4 h-100 w-75 d-flex flex-column justify-content-center align-items-center"
+  >
+    <h1 class="text-white font-bold">Why Fasal Fresh...</h1>
+    <button
+      class="play-btn text-white d-flex align-items-center gap-md-3 gap-2 mt-md-3"
+    >
+      <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 71">
+        <path
+          d="M36.0037 65.0949C52.3024 65.0949 65.5152 51.8822 65.5152 35.5834C65.5152 19.2847 52.3024 6.07202 36.0037 6.07202C19.705 6.07202 6.49231 19.2847 6.49231 35.5834C6.49231 51.8822 19.705 65.0949 36.0037 65.0949Z"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+        <path
+          d="M30.101 23.7809L47.8078 35.5855L30.101 47.39V23.7809Z"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+      <h3>Watch</h3>
+    </button>
+  </div>
+
+  <section class="video-modal">
+    <div
+      class="h-100 d-flex flex-column justify-content-center position-relative align-items-center px-4"
+    >
+      <div class="video-wrp position-relative">
+        <video
+          class="w-100 border rounded-3"
+          src="assets/images/fasal-fresh/fasal-fresh-video.mp4"
+          controls
+          plays-inline
+        >
+        </video>
+
+        <button class="close-btn mt-3 text-white">
+          <svg
+            class="w-100"
+            data-v-e087307f=""
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="m15 9-6 6"></path>
+            <path d="m9 9 6 6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+</section>
+
+<script>
+  const watchBtn = document.querySelector(".play-btn");
+  const closeBtn = document.querySelector(".close-btn");
+  const videoModal = document.querySelector(".video-modal") as HTMLVideoElement;
+  watchBtn.addEventListener("click", () => {
+    videoModal.style.display = "block";
+    console.log(videoModal.querySelector("video"));
+  });
+  closeBtn.addEventListener("click", () => {
+    videoModal.style.display = "none";
+  });
+</script>
+
+<style>
+  .video-modal .video-wrp {
+    max-width: 60%;
+  }
+  .video-modal {
+    display: none;
+    position: fixed;
+
+    inset: 0;
+    z-index: 10;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(160deg, #00613cab, #000000a5);
+  }
+  .fasal-video-wrp {
+    height: 100vh;
+    min-height: 550px;
+    max-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("assets/images/fasal-fresh/fasal-video.jpg");
+  }
+  .fasal-video-wrp .play-btn:hover h3 {
+    color: #ffe366;
+  }
+  .fasal-video-wrp .play-btn:hover svg {
+    transition: all 300ms ease;
+    stroke: #ffe366;
+  }
+  .fasal-video-wrp .play-btn svg {
+    transition: all 300ms ease;
+    stroke: white;
+    width: 70px;
+    fill: none;
+  }
+  .fasal-video-wrp button {
+    background: transparent;
+    border: none;
+  }
+  .close-btn:hover {
+    stroke: #ffe366;
+  }
+  .close-btn {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 50px;
+    transition: all 300ms ease;
+    stroke: #ffe366;
+    fill: none;
+  }
+
+  @media (max-width: 786px) {
+    .fasal-video-wrp {
+      height: 300px;
+      min-height: 300px;
+    }
+    .fasal-video-wrp .play-btn svg {
+      width: 50px;
+    }
+    .close-btn {
+      width: 50px;
+    }
+
+    .video-modal .video-wrp {
+      max-width: 100%;
+    }
+    .close-btn {
+      top: auto;
+      bottom: -50px;
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+    }
+  }
+</style>

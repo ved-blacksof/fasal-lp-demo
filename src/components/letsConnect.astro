@@ -1,165 +1,326 @@
 ---
+const { className } = Astro.props;
 ---
 
-<section id="contact-us" class="lets-connect-section relative">
-  <div class="container-sm">
+<section
+  id="contact-form"
+  class="lets-connect-section relative blade-bottom-padding"
+>
+  <div class="container-sm blade-top-padding">
     <div data-aos="fade-up" class="text-center">
-      <h1 class="text-green">
-        Any messages for us or our partner <br /> farmers? We are listening.
+      <h1 class="fw-bold">
+        Any messages for us or our partner <br /> farmers?
+        <span class="text-green"> We are listening.</span>
       </h1>
     </div>
-    <form id="myForm" class="row border-md p-md-5 p-2 gap-x-2 gap-y">
-      <div class="d-flex gap-1 mt-2 flex-column col-md-6">
-        <label for="name">Your Name:</label>
-        <input class="input-style" type="text" id="name" name="name" />
-        <span class="error-message"></span>
+    <form id="form" class="row p-md-5 p-2 gap-x-2 gap-y mx-auto">
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
+        <label for="name">Name*</label>
+        <input class="w-full input-style" id="name" name="name" type="text" />
+        <div class="error"></div>
+      </div>
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
+        <label for="name">Last Name</label>
+        <input class="w-full input-style" id="lname" name="lname" type="text" />
+        <div class="error"></div>
       </div>
 
-      <div class="d-flex gap-1 mt-2 flex-column col-md-6">
-        <label for="phone">Phone Number:</label>
-        <input class="input-style" type="tel" id="phone" name="phone" />
-        <span class="error-message"></span>
-      </div>
-
-      <div class="d-flex gap-1 mt-2 flex-column col-md-6">
-        <label for="area">Area:</label>
-        <input class="input-style" type="text" id="area" name="area" />
-        <span class="error-message"></span>
-      </div>
-
-      <div class="d-flex gap-1 mt-2 flex-column col-md-6">
-        <label for="society">Society:</label>
-        <input class="input-style" type="text" id="society" name="society" />
-        <span class="error-message"></span>
-      </div>
-
-      <div class="d-flex gap-1 mt-2 flex-column col-md-6">
-        <label for="pincode">Pincode:</label>
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
+        <label for="phone">Phone</label>
         <input
-          class="input-style"
+          class="w-full input-style"
+          id="phone"
+          name="phone"
+          type="number"
+          autocomplete="off"
+        />
+        <div class="error"></div>
+      </div>
+
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
+        <label for="area">Area*</label>
+        <input
+          class="w-full input-style"
+          id="area"
+          name="area"
           type="text"
+          autocomplete="off"
+        />
+        <div class="error"></div>
+      </div>
+
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
+        <label for="society">Society</label>
+        <input
+          class="w-full input-style"
+          id="society"
+          name="society"
+          type="text"
+          autocomplete="off"
+        />
+        <div class="error"></div>
+      </div>
+
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
+        <label for="pincode">Pincode*</label>
+        <input
+          class="w-full input-style"
           id="pincode"
           name="pincode"
-          pattern="[0-9]{6}"
+          type="text"
+          autocomplete="off"
         />
-        <span class="error-message"></span>
+        <div class="error"></div>
       </div>
 
-      <div class="d-flex gap-1 mt-2 flex-column">
-        <label for="message">Your Message:</label>
-        <textarea rows="5" class="input-style" id="message" name="message"
-        ></textarea>
-        <span class="error-message"></span>
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-12">
+        <label for="message">Message</label>
+        <textarea
+          class="w-full input-style"
+          id="message"
+          name="message"
+          rows="3"
+        >
+        </textarea>
+        <div class="error"></div>
       </div>
 
-      <button class="mx-auto mt-3" type="submit">Send Email</button>
+      <div class="d-flex justify-content-center mt-4">
+        <button class="fasal-fresh-btn-green" type="submit"> Send Email</button>
+      </div>
     </form>
   </div>
 </section>
 
+<div id="popup-wrapper" class="d-none m-auto border border-danger">
+  <div
+    class="mx-auto w-100 h-100 border border-black d-flex justify-content-center align-items-center"
+  >
+    <div id="success-msg-wrapper" class="d-none">
+      <div class="text-center mx-auto p-5 bg-white rounded-2">
+        <div class="">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="55"
+            height="55"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="green"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-mail-check"
+            ><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"
+            ></path><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+            ></path><path d="m16 19 2 2 4-4"></path></svg
+          >
+        </div>
+        <h3 class="text-black font-bold mt-2">Thank You</h3>
+
+        <h5 class="text-black fw-normal">
+          Your response has been recorded successfully.
+        </h5>
+      </div>
+    </div>
+    <div id="failed-msg-wrapper" class="d-none">
+      <div class="text-center mx-auto p-5 bg-white rounded-2">
+        <div class="">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="55"
+            height="55"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="red"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-circle-slash"
+            ><line x1="9" x2="15" y1="15" y2="9"></line><circle
+              cx="12"
+              cy="12"
+              r="10"></circle></svg
+          >
+        </div>
+        <h3 class="text-black font-bold mt-2">Couldn't connect</h3>
+
+        <h5 class="text-black fw-normal">Please try again later!</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-  import axios from "axios";
-  const name = (document.getElementById("name") as HTMLInputElement).value;
-  const phone = (document.getElementById("phone") as HTMLInputElement).value;
-  const area = (document.getElementById("area") as HTMLInputElement).value;
-  const society = (document.getElementById("society") as HTMLInputElement)
-    .value;
-  const pincode = (document.getElementById("pincode") as HTMLInputElement)
-    .value;
-  const message = (document.getElementById("message") as HTMLInputElement)
-    .value;
+  import emailjs from "@emailjs/browser";
+  const form = document.getElementById("form") as HTMLFormElement;
+  const name = document.getElementById("name") as HTMLInputElement;
+  const lname = document.getElementById("lname") as HTMLInputElement;
+  const area = document.getElementById("area") as HTMLInputElement;
+  const society = document.getElementById("society") as HTMLInputElement;
+  const phone = document.getElementById("phone") as HTMLInputElement;
+  const pincode = document.getElementById("pincode") as HTMLInputElement;
+  const message = document.getElementById("message") as HTMLTextAreaElement;
+  const popup = document.getElementById("popup-wrapper") as HTMLDivElement;
+  const success = document.getElementById(
+    "success-msg-wrapper"
+  ) as HTMLDivElement;
+  const failed = document.getElementById(
+    "failed-msg-wrapper"
+  ) as HTMLDivElement;
+  const submit = document.getElementById("submit-btn") as HTMLButtonElement;
 
-  const apiKey = import.meta.env.SENDGRID_AP;
-  const url = "https://api.sendgrid.com/v3/mail/send";
-  let isValid = true;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    console.log(name.value.trim(), name.value);
+    var data = {
+      nameValue: name.value.trim(),
+      lnameValue: lname.value.trim(),
+      areaValue: area.value.trim(),
+      societyValue: society.value.trim(),
+      phoneValue: phone.value.trim(),
+      pincodeValue: pincode.value.trim(),
+      messageValue: message.value.trim(),
+    };
 
-  const data = {
-    to: [{ email: "ved.blacksof@gmail.com" }], // Replace with recipient email address
-    from: {
-      email: "dev.blacksof@gmail.com", // Replace with your sender email address
-    },
-    // personalizations: [{}],
-    subject: "Message from Your Website",
-    text: "dfjdlfjlkfj",
-    content: [
-      {
-        type: "text/plain",
-        value: `Name: ${name}`,
-        // \nPhone Number: ${phone}\nArea: ${area}\nSociety: ${society}\nPincode: ${pincode}\nMessage: ${message}
-      },
-    ],
+    const isTrue = await validateInputs(data);
+    console.log("ISTrUE", isTrue);
+
+    if (isTrue) {
+      await sendEmail();
+    } else {
+      console.log("error");
+    }
+  });
+
+  function sendEmail() {
+    emailjs
+      .sendForm(
+        "fasal-fresh-landing-page",
+        "template_0zzst6l",
+        form,
+        "user_YW47ZYWhszMIdjdqUtsPJ"
+      )
+      .then(
+        (result) => {
+          console.log("SUCCESS!", result);
+          if (result.status === 200) {
+            failed.classList.remove("show");
+            popup.classList.remove("hidden");
+            popup.classList.add("block");
+            setInterval(() => {
+              popup.classList.add("hidden");
+            }, 3000);
+            success.classList.remove("hidden");
+            success.classList.add("show");
+            form.reset();
+          } else {
+            success.classList.remove("show");
+            popup.classList.remove("hidden");
+            popup.classList.add("show");
+            failed.classList.remove("hidden");
+            failed.classList.add("show");
+          }
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+  }
+
+  const setError = (element: any, message: any) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector(".error");
+
+    errorDisplay.innerText = message;
+    inputControl.classList.remove("success");
   };
 
-  // submit event
-  document
-    .getElementById("myForm")
-    .addEventListener("submit", async function (event) {
-      event.preventDefault();
-      validate();
-      try {
-        const response = await axios.post(url, data, {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            mode: "no-cors",
-            Authorization: `Bearer ${apiKey}`,
-          },
-        });
+  const setSuccess = (element: any) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector(".error");
 
-        console.log("Email sent successfully:", response);
-      } catch (error) {
-        console.error("Error sending email:", error);
-      }
-    });
+    errorDisplay.innerText = "";
+    inputControl.classList.add("success");
+  };
 
-  function validate() {
-    const errorMessages = document.querySelectorAll(".error-message");
-    errorMessages.forEach((message) => (message.textContent = ""));
+  const validateInputs = (data: any) => {
+    var arr: any = [];
 
-    if (name.trim() === "") {
-      document.getElementById("name").nextElementSibling.textContent =
-        "Name is required";
-      isValid = false;
-    }
-    if (area.trim() === "") {
-      document.getElementById("area").nextElementSibling.textContent =
-        "Area is required";
-      isValid = false;
-    }
-    if (society.trim() === "") {
-      document.getElementById("society").nextElementSibling.textContent =
-        "Society is required";
-      isValid = false;
-    }
-
-    if (!phone.match(/^\d+$/)) {
-      document.getElementById("phone").nextElementSibling.textContent =
-        "Invalid phone number";
-      isValid = false;
-    }
-
-    if (!pincode.match(/^[0-9]{6}$/)) {
-      document.getElementById("pincode").nextElementSibling.textContent =
-        "Invalid pincode (must be 6 digits)";
-      isValid = false;
-    }
-
-    if (message.trim() === "") {
-      document.getElementById("message").nextElementSibling.textContent =
-        "Message is required";
-      isValid = false;
-    }
-
-    if (isValid) {
-      console.log("Form is valid, send email using server-side script");
+    if (data.nameValue === "") {
+      setError(name, "Whoops! Guess, you missed this.");
+      arr[0] = false;
     } else {
-      console.log("Please fix the errors before submitting the form.");
+      setSuccess(name);
+      arr[0] = true;
     }
-  }
+
+    if (data.phoneValue === "") {
+      setError(phone, "Phone is required");
+      arr[2] = false;
+    } else if (data.phoneValue.length < 10) {
+      setError(phone, "Enter a valid phone number");
+      arr[2] = false;
+    } else if (data.phoneValue.length > 10) {
+      setError(phone, "Enter a valid phone number");
+      arr[2] = false;
+    } else {
+      setSuccess(phone);
+      arr[2] = true;
+    }
+
+    if (data.areaValue === "") {
+      setError(area, "Whoops! Guess, you missed this.");
+      arr[3] = false;
+    } else {
+      setSuccess(area);
+      arr[3] = true;
+    }
+
+    if (data.societyValue === "") {
+      setError(society, "Whoops! Guess, you missed this.");
+      arr[4] = false;
+    } else {
+      setSuccess(society);
+      arr[4] = true;
+    }
+    if (data.pincodeValue === "") {
+      setError(pincode, "Whoops! Guess, you missed this.");
+      arr[5] = false;
+    } else {
+      setSuccess(pincode);
+      arr[5] = true;
+    }
+
+    if (data.messageValue === "") {
+      setError(message, "Whoops! Guess, you missed this.");
+      arr[6] = false;
+    } else {
+      setSuccess(message);
+      arr[6] = true;
+    }
+
+    let isValid = false;
+
+    console.log(isValid, arr, "before");
+    if (arr.includes(false)) {
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+    console.log(isValid, arr, "after");
+
+    return isValid;
+  };
 </script>
 
 <style>
-  .error-message {
+  form {
+    width: 75%;
+  }
+  label {
+    font-size: 1rem;
+  }
+  .error {
     color: red;
     font-size: 14px;
   }
@@ -169,13 +330,27 @@
   .input-style {
     border: 1px solid gray;
     border-radius: 4px;
-    padding: 6px 8px;
+    padding: 6px 10px;
   }
-  button {
-    padding: 10px 30px;
-    width: fit-content;
-    border: none;
-    border-radius: 10px;
-    background: greenyellow;
+  #popup-wrapper {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 222, 0.5);
+  }
+  #popup-wrapper svg {
+    width: 50px;
+  }
+  @media (max-width: 786px) {
+    form {
+      width: 95%;
+    }
+    label {
+      font-size: 0.8rem;
+    }
+    .input-style {
+      padding: 3px 5px;
+    }
   }
 </style>
