@@ -53,19 +53,68 @@
       </div>
     </div>
   </section>
+
+  <!-- bottom navigation -->
+  <nav
+    class="bottom-navigation bg-green py-3 px-4 position-fixed left-0 right-0 mx-auto w-100 d-flex justify-content-between z-3"
+  >
+    <a
+      href="#contact-form"
+      class="fasal-fresh-btn text-decoration-none z-3 lh-base">Contact Us</a
+    >
+
+    <button
+      class="play-btn text-white d-flex align-items-center gap-md-3 gap-2"
+    >
+      <svg height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 71">
+        <path
+          d="M36.0037 65.0949C52.3024 65.0949 65.5152 51.8822 65.5152 35.5834C65.5152 19.2847 52.3024 6.07202 36.0037 6.07202C19.705 6.07202 6.49231 19.2847 6.49231 35.5834C6.49231 51.8822 19.705 65.0949 36.0037 65.0949Z"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+        <path
+          d="M30.101 23.7809L47.8078 35.5855L30.101 47.39V23.7809Z"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+      <h3 class="mb-0">Watch</h3>
+    </button>
+  </nav>
 </section>
 
 <script>
-  const watchBtn = document.querySelector(".play-btn");
-  const closeBtn = document.querySelector(".close-btn");
+  const watchBtn = document.querySelectorAll(".play-btn") as NodeList;
+  const closeBtn = document.querySelector(".close-btn") as HTMLButtonElement;
   const videoModal = document.querySelector(".video-modal") as HTMLVideoElement;
-  watchBtn.addEventListener("click", () => {
-    videoModal.style.display = "block";
-    console.log(videoModal.querySelector("video"));
+  watchBtn.forEach((item) => {
+    item.addEventListener("click", () => {
+      videoModal.style.display = "block";
+    });
   });
   closeBtn.addEventListener("click", () => {
     videoModal.style.display = "none";
   });
+</script>
+
+<script>
+  const wrap = document.querySelector(".fasal-video-wrp ") as HTMLDivElement;
+  const bottomNav = document.querySelector(
+    ".bottom-navigation"
+  ) as HTMLDivElement;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // console.log("The section is in view");
+        bottomNav.style.transform = "translateY(-100px)";
+      } else {
+        // console.log("The section is not in view");
+        bottomNav.style.transform = "translateY(100px)";
+      }
+    });
+  });
+
+  observer.observe(wrap);
 </script>
 
 <style>
@@ -107,7 +156,8 @@
     width: 70px;
     fill: none;
   }
-  .fasal-video-wrp button {
+  .fasal-video-wrp .play-btn,
+  .close-btn {
     background: transparent;
     border: none;
   }
@@ -122,6 +172,12 @@
     transition: all 300ms ease;
     stroke: #ffe366;
     fill: none;
+  }
+
+  .bottom-navigation {
+    bottom: -100px;
+    transform: translateY(0px);
+    transition: all 300ms ease;
   }
 
   @media (max-width: 786px) {

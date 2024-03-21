@@ -16,19 +16,19 @@ const { className } = Astro.props;
     <form id="form" class="row p-md-5 p-2 gap-x-2 gap-y mx-auto">
       <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
         <label for="name">Name*</label>
-        <input class="w-full input-style" id="name" name="name" type="text" />
+        <input class="w-100 input-style" id="name" name="name" type="text" />
         <div class="error"></div>
       </div>
       <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
         <label for="name">Last Name</label>
-        <input class="w-full input-style" id="lname" name="lname" type="text" />
+        <input class="w-100 input-style" id="lname" name="lname" type="text" />
         <div class="error"></div>
       </div>
 
       <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
-        <label for="phone">Phone</label>
+        <label for="phone">Phone*</label>
         <input
-          class="w-full input-style"
+          class="w-100 input-style"
           id="phone"
           name="phone"
           type="number"
@@ -40,7 +40,7 @@ const { className } = Astro.props;
       <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
         <label for="area">Area*</label>
         <input
-          class="w-full input-style"
+          class="w-100 input-style"
           id="area"
           name="area"
           type="text"
@@ -50,9 +50,9 @@ const { className } = Astro.props;
       </div>
 
       <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
-        <label for="society">Society</label>
+        <label for="society">Society*</label>
         <input
-          class="w-full input-style"
+          class="w-100 input-style"
           id="society"
           name="society"
           type="text"
@@ -64,7 +64,7 @@ const { className } = Astro.props;
       <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
         <label for="pincode">Pincode*</label>
         <input
-          class="w-full input-style"
+          class="w-100 input-style"
           id="pincode"
           name="pincode"
           type="text"
@@ -76,12 +76,10 @@ const { className } = Astro.props;
       <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-12">
         <label for="message">Message</label>
         <textarea
-          class="w-full input-style"
+          class="w-100 input-style p-2"
           id="message"
           name="message"
-          rows="3"
-        >
-        </textarea>
+          rows="3"></textarea>
         <div class="error"></div>
       </div>
 
@@ -171,7 +169,6 @@ const { className } = Astro.props;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log(name.value.trim(), name.value);
     var data = {
       nameValue: name.value.trim(),
       lnameValue: lname.value.trim(),
@@ -183,12 +180,12 @@ const { className } = Astro.props;
     };
 
     const isTrue = await validateInputs(data);
-    console.log("ISTrUE", isTrue);
+    // console.log("ISTrUE", isTrue);
 
     if (isTrue) {
       await sendEmail();
     } else {
-      console.log("error");
+      // console.log("error");
     }
   });
 
@@ -202,27 +199,27 @@ const { className } = Astro.props;
       )
       .then(
         (result) => {
-          console.log("SUCCESS!", result);
+          // console.log("SUCCESS!", result);
           if (result.status === 200) {
-            failed.classList.remove("show");
-            popup.classList.remove("hidden");
-            popup.classList.add("block");
+            failed.classList.remove("d-block");
+            popup.classList.remove("d-none");
+            popup.classList.add("d-block");
             setInterval(() => {
-              popup.classList.add("hidden");
+              popup.classList.add("d-none");
             }, 3000);
-            success.classList.remove("hidden");
-            success.classList.add("show");
+            success.classList.remove("d-none");
+            success.classList.add("d-block");
             form.reset();
           } else {
-            success.classList.remove("show");
-            popup.classList.remove("hidden");
-            popup.classList.add("show");
-            failed.classList.remove("hidden");
-            failed.classList.add("show");
+            success.classList.remove("d-block");
+            popup.classList.remove("d-none");
+            popup.classList.add("d-block");
+            failed.classList.remove("d-none");
+            failed.classList.add("d-block");
           }
         },
         (error) => {
-          console.log("FAILED...", error.text);
+          // console.log("FAILED...", error.text);
         }
       );
   }
@@ -301,13 +298,13 @@ const { className } = Astro.props;
 
     let isValid = false;
 
-    console.log(isValid, arr, "before");
+    // console.log(isValid, arr, "before");
     if (arr.includes(false)) {
       isValid = false;
     } else {
       isValid = true;
     }
-    console.log(isValid, arr, "after");
+    // console.log(isValid, arr, "after");
 
     return isValid;
   };
@@ -325,13 +322,24 @@ const { className } = Astro.props;
     font-size: 14px;
   }
   .input-style:focus {
-    outline: 1px solid gray;
+    outline: 1px solid rgba(0, 0, 0, 0.507);
   }
   .input-style {
-    border: 1px solid gray;
+    border: 1px solid rgba(128, 128, 128, 0.378);
     border-radius: 4px;
     padding: 6px 10px;
   }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
   #popup-wrapper {
     height: 100vh;
     width: 100vw;

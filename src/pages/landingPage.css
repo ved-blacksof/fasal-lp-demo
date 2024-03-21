@@ -122,7 +122,7 @@ p {
   .fasal-fresh-btn {
     font-size: 1rem;
     font-weight: 500;
-    padding: 16px 30px;
+    padding: 8px 30px;
   }
 }
 
@@ -229,4 +229,9 @@ p {
   br {
     display: none;
   }
+}
+
+.swiper-pagination-bullet-active {
+  background: #00613c !important;
+  opacity: 1 !important;
 }

@@ -22,7 +22,7 @@ async function sendEmail() {
     });
 
     if (response.ok) {
-      console.log("Email sent successfully");
+      // console.log("Email sent successfully");
     } else {
       console.error("Failed to send email:", response.statusText);
     }

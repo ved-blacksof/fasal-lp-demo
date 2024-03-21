@@ -96,7 +96,7 @@
 
       if (validate()) {
         try {
-          console.log("Email sent successfully:");
+          // console.log("Email sent successfully:");
         } catch (error) {
           console.error("Error sending email:", error);
         }
@@ -109,14 +109,14 @@
       message.textContent = ""; // Clear previous error messages
     });
 
-    console.log(fname);
+    // console.log(fname);
     if (fname.length <= 1) {
       document.getElementById("fname").nextElementSibling.textContent =
         "Name is required";
       isValid = false;
     }
     if (true) {
-      console.log("working");
+      // console.log("working");
     }
 
     if (area.trim() === "") {
@@ -150,9 +150,9 @@
     }
 
     if (isValid) {
-      console.log("Form is valid, send email using server-side script");
+      // console.log("Form is valid, send email using server-side script");
     } else {
-      console.log("Please fix the errors before submitting the form.");
+      // console.log("Please fix the errors before submitting the form.");
     }
 
     return isValid;
@@ -163,7 +163,7 @@
       .sendForm("hello@blacksof", "hello-template", form, "iugFe8w5Tiy14ygmI")
       .then(
         (result) => {
-          console.log("SUCCESS!", result);
+          // console.log("SUCCESS!", result);
           // if (result.status === 200) {
           //   failed.classList.remove("show");
           //   popup.classList.remove("hidden");
@@ -183,7 +183,7 @@
           // }
         },
         (error) => {
-          console.log("FAILED...", error.text);
+          // console.log("FAILED...", error.text);
         }
       );
   }
@@ -201,7 +201,7 @@
     outline: 1px solid gray;
   }
   .input-style {
-    border: 1px solid gray;
+    border: 1px solid rgba(128, 128, 128, 0.316);
     border-radius: 4px;
     padding: 6px 10px;
   }
