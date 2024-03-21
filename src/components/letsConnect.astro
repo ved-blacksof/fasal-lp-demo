@@ -67,7 +67,7 @@ const { className } = Astro.props;
           class="w-100 input-style"
           id="pincode"
           name="pincode"
-          type="text"
+          type="number"
           autocomplete="off"
         />
         <div class="error"></div>
@@ -90,9 +90,9 @@ const { className } = Astro.props;
   </div>
 </section>
 
-<div id="popup-wrapper" class="d-none m-auto border border-danger">
+<div id="popup-wrapper" class="d-none m-auto">
   <div
-    class="mx-auto w-100 h-100 border border-black d-flex justify-content-center align-items-center"
+    class="mx-auto w-100 h-100 d-flex justify-content-center align-items-center"
   >
     <div id="success-msg-wrapper" class="d-none">
       <div class="text-center mx-auto p-5 bg-white rounded-2">
@@ -189,76 +189,76 @@ const { className } = Astro.props;
     }
   });
 
-  // function sendEmail() {
-  //   emailjs
-  //     .sendForm(
-  //       "fasal-fresh-landing-page",
-  //       "template_0zzst6l",
-  //       form,
-  //       "user_YW47ZYWhszMIdjdqUtsPJ"
-  //     )
-  //     .then(
-  //       (result) => {
-  //         // console.log("SUCCESS!", result);
-  //         if (result.status === 200) {
-  //           failed.classList.remove("d-block");
-  //           popup.classList.remove("d-none");
-  //           popup.classList.add("d-block");
-  //           setInterval(() => {
-  //             popup.classList.add("d-none");
-  //           }, 3000);
-  //           success.classList.remove("d-none");
-  //           success.classList.add("d-block");
-  //           form.reset();
-  //         } else {
-  //           success.classList.remove("d-block");
-  //           popup.classList.remove("d-none");
-  //           popup.classList.add("d-block");
-  //           failed.classList.remove("d-none");
-  //           failed.classList.add("d-block");
-  //         }
-  //       },
-  //       (error) => {
-  //         // console.log("FAILED...", error.text);
-  //       }
-  //     );
-  // }
-
-  async function sendEmail() {
-    const apiKey =
-      "00B5DC7665B08D246C2A21D4BF2AD55A00594A1C1C79E53872B458673294032D792690F634DCB492EBE81B437AB55898";
-    const fromEmail = "ved.blacksof@gmail.com";
-    const toEmail = "ved.blacksof@gmail.com";
-    const subject = "enquiry";
-    const body = "This is a test email sent from Astro.js with  Email.";
-    const templateID = "";
-    try {
-      const response = await fetch(
-        "https://api.elasticemail.com/v2/email/send",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: new URLSearchParams({
-            apiKey: apiKey,
-            subject: subject,
-            from: fromEmail,
-            to: toEmail,
-            bodyText: body,
-          }),
+  function sendEmail() {
+    emailjs
+      .sendForm(
+        "fasal-se-rv-ice-id",
+        "template_9avl7o7",
+        form,
+        "vYEyiojkuopxJjifx"
+      )
+      .then(
+        (result) => {
+          console.log("SUCCESS!", result);
+          if (result.status === 200) {
+            failed.classList.remove("d-block");
+            popup.classList.remove("d-none");
+            popup.classList.add("d-block");
+            setInterval(() => {
+              popup.classList.add("d-none");
+            }, 3000);
+            success.classList.remove("d-none");
+            success.classList.add("d-block");
+            form.reset();
+          } else {
+            success.classList.remove("d-block");
+            popup.classList.remove("d-none");
+            popup.classList.add("d-block");
+            failed.classList.remove("d-none");
+            failed.classList.add("d-block");
+          }
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
         }
       );
-
-      if (response.ok) {
-        // console.log("Email sent successfully");
-      } else {
-        console.error("Failed to send email:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
   }
+
+  // async function sendEmail() {
+  //   const apiKey =
+  //     "00B5DC7665B08D246C2A21D4BF2AD55A00594A1C1C79E53872B458673294032D792690F634DCB492EBE81B437AB55898";
+  //   const fromEmail = "ved.blacksof@gmail.com";
+  //   const toEmail = "ved.blacksof@gmail.com";
+  //   const subject = "enquiry";
+  //   const body = "This is a test email sent from Astro.js with  Email.";
+  //   const templateID = "";
+  //   try {
+  //     const response = await fetch(
+  //       "https://api.elasticemail.com/v2/email/send",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/x-www-form-urlencoded",
+  //         },
+  //         body: new URLSearchParams({
+  //           apiKey: apiKey,
+  //           subject: subject,
+  //           from: fromEmail,
+  //           to: toEmail,
+  //           bodyText: body,
+  //         }),
+  //       }
+  //     );
+
+  //     if (response.ok) {
+  //       // console.log("Email sent successfully");
+  //     } else {
+  //       console.error("Failed to send email:", response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error sending email:", error);
+  //   }
+  // }
 
   const setError = (element: any, message: any) => {
     const inputControl = element.parentElement;
