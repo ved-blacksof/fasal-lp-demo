@@ -189,39 +189,75 @@ const { className } = Astro.props;
     }
   });
 
-  function sendEmail() {
-    emailjs
-      .sendForm(
-        "fasal-fresh-landing-page",
-        "template_0zzst6l",
-        form,
-        "user_YW47ZYWhszMIdjdqUtsPJ"
-      )
-      .then(
-        (result) => {
-          // console.log("SUCCESS!", result);
-          if (result.status === 200) {
-            failed.classList.remove("d-block");
-            popup.classList.remove("d-none");
-            popup.classList.add("d-block");
-            setInterval(() => {
-              popup.classList.add("d-none");
-            }, 3000);
-            success.classList.remove("d-none");
-            success.classList.add("d-block");
-            form.reset();
-          } else {
-            success.classList.remove("d-block");
-            popup.classList.remove("d-none");
-            popup.classList.add("d-block");
-            failed.classList.remove("d-none");
-            failed.classList.add("d-block");
-          }
-        },
-        (error) => {
-          // console.log("FAILED...", error.text);
+  // function sendEmail() {
+  //   emailjs
+  //     .sendForm(
+  //       "fasal-fresh-landing-page",
+  //       "template_0zzst6l",
+  //       form,
+  //       "user_YW47ZYWhszMIdjdqUtsPJ"
+  //     )
+  //     .then(
+  //       (result) => {
+  //         // console.log("SUCCESS!", result);
+  //         if (result.status === 200) {
+  //           failed.classList.remove("d-block");
+  //           popup.classList.remove("d-none");
+  //           popup.classList.add("d-block");
+  //           setInterval(() => {
+  //             popup.classList.add("d-none");
+  //           }, 3000);
+  //           success.classList.remove("d-none");
+  //           success.classList.add("d-block");
+  //           form.reset();
+  //         } else {
+  //           success.classList.remove("d-block");
+  //           popup.classList.remove("d-none");
+  //           popup.classList.add("d-block");
+  //           failed.classList.remove("d-none");
+  //           failed.classList.add("d-block");
+  //         }
+  //       },
+  //       (error) => {
+  //         // console.log("FAILED...", error.text);
+  //       }
+  //     );
+  // }
+
+  async function sendEmail() {
+    const apiKey =
+      "00B5DC7665B08D246C2A21D4BF2AD55A00594A1C1C79E53872B458673294032D792690F634DCB492EBE81B437AB55898";
+    const fromEmail = "ved.blacksof@gmail.com";
+    const toEmail = "ved.blacksof@gmail.com";
+    const subject = "enquiry";
+    const body = "This is a test email sent from Astro.js with  Email.";
+    const templateID = "";
+    try {
+      const response = await fetch(
+        "https://api.elasticemail.com/v2/email/send",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({
+            apiKey: apiKey,
+            subject: subject,
+            from: fromEmail,
+            to: toEmail,
+            bodyText: body,
+          }),
         }
       );
+
+      if (response.ok) {
+        // console.log("Email sent successfully");
+      } else {
+        console.error("Failed to send email:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
   }
 
   const setError = (element: any, message: any) => {
@@ -244,7 +280,7 @@ const { className } = Astro.props;
     var arr: any = [];
 
     if (data.nameValue === "") {
-      setError(name, "Whoops! Guess, you missed this.");
+      setError(name, "Name is required. ");
       arr[0] = false;
     } else {
       setSuccess(name);
@@ -266,7 +302,7 @@ const { className } = Astro.props;
     }
 
     if (data.areaValue === "") {
-      setError(area, "Whoops! Guess, you missed this.");
+      setError(area, "Area is required. ");
       arr[3] = false;
     } else {
       setSuccess(area);
@@ -274,14 +310,14 @@ const { className } = Astro.props;
     }
 
     if (data.societyValue === "") {
-      setError(society, "Whoops! Guess, you missed this.");
+      setError(society, "Society is required. ");
       arr[4] = false;
     } else {
       setSuccess(society);
       arr[4] = true;
     }
     if (data.pincodeValue === "") {
-      setError(pincode, "Whoops! Guess, you missed this.");
+      setError(pincode, "Pincode is required. ");
       arr[5] = false;
     } else {
       setSuccess(pincode);
@@ -289,7 +325,7 @@ const { className } = Astro.props;
     }
 
     if (data.messageValue === "") {
-      setError(message, "Whoops! Guess, you missed this.");
+      setError(message, "Message is required. ");
       arr[6] = false;
     } else {
       setSuccess(message);
