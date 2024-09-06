@@ -1,0 +1,177 @@
+---
+---
+
+<section class="padding-xl">
+  <div id="fasal-fresh-wrp-banner" class="text-center pt-xxl-5 pt-4">
+    <div class="">
+      <img
+        class="fasal-fresh-logo"
+        src="assets/images/fasal-fresh/banner/fasal-fresh-logo.png"
+        alt=""
+      />
+    </div>
+    <h1 class="text-64 fw-bold text-black mt-3 lh-1 px-2">
+      Eat what you know, <br />
+      <span class="text-green"> know what you eat.</span>
+    </h1>
+
+    <h4 class="fw-500 text-black mt-4 px-2">
+      Embrace the joy of eating fresh, nutritionally <br /> rich fruits nurtured
+      and <span class="fw-bold">Responsibly grown with Precision.</span>
+    </h4>
+
+    <button id="contact-us" class="fasal-fresh-btn mt-4">Contact us</button>
+
+    <div
+      class="ratings mt-4 d-flex flex-wrap px-2 justify-content-center align-items-center gap-3"
+    >
+      <div class="rating-item">
+        <img
+          class="h-100"
+          src="assets/images/fasal-fresh/banner/clients-rating.png"
+          alt=""
+        />
+      </div>
+      <h6 class="text-white font-600 mt-2">
+        Trusted by <span class="text-white fw-600">India</span>
+        <span style="color:red;font-size:20px;">&#x2764;</span>
+      </h6>
+    </div>
+
+    <div class="fruit-basket">
+      <img
+        class="w-100"
+        src="assets/images/fasal-fresh/banner/fruits.png"
+        alt="fruits bucket"
+      />
+    </div>
+  </div>
+</section>
+
+<script>
+  const contactUs = document.querySelector("#contact-us");
+  contactUs.addEventListener("click", () => {
+    window.location.href = "#contact-form";
+  });
+</script>
+
+<style>
+  br {
+    display: block;
+  }
+
+  .fasal-fresh-logo {
+    max-width: 90px;
+  }
+  #fasal-fresh-wrp-banner {
+    border-radius: 20px;
+    /* height: 120vh; */
+    position: relative;
+    max-height: 900px;
+    min-height: 800px;
+    width: 100%;
+    background: linear-gradient(
+        180deg,
+        #efcc4e90 0.14%,
+        #efcc4e1b 11.99%,
+        rgba(239, 204, 78, 0) 93.88%
+      ),
+      url("../assets/images/fasal-fresh/banner/banner-bg.jpg") no-repeat;
+    background-size: cover;
+  }
+  .fruit-basket {
+    width: 30%;
+    max-width: 450px;
+    height: fit-content;
+    position: absolute;
+    bottom: -25%;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+  }
+
+  .ratings .rating-item {
+    height: 50px;
+  }
+
+  .padding-xl {
+    padding: 3rem 3rem 12rem 3rem;
+  }
+
+  @media (max-width: 1560px) {
+    .fruit-basket {
+      max-width: 450px;
+      width: 30%;
+      bottom: -22%;
+    }
+    .padding-xl {
+      padding: 3rem 3rem 10rem 3rem;
+    }
+    .fasal-fresh-btn {
+      padding: 10px 30px;
+    }
+  }
+  @media (max-width: 1440px) {
+    #fasal-fresh-wrp-banner {
+      min-height: 800px;
+    }
+    .fruit-basket {
+      width: 35%;
+      max-width: 420px;
+      bottom: -20%;
+    }
+  }
+  @media (max-width: 1280px) {
+    #fasal-fresh-wrp-banner {
+      min-height: 780px;
+    }
+    .fruit-basket {
+      width: 35%;
+    }
+    .padding-xl {
+      padding: 3rem 3rem 10rem 3rem;
+    }
+    #fasal-fresh-wrp-banner {
+      border-radius: 20px;
+    }
+    .ratings .rating-item {
+      height: 40px;
+    }
+  }
+  @media (max-width: 1024px) {
+    #fasal-fresh-wrp-banner {
+      border-radius: 0px;
+      height: fit-content;
+      max-height: none;
+      min-height: 750px;
+    }
+    .fruit-basket {
+      width: 50%;
+      position: static;
+    }
+    .padding-xl {
+      padding: 0rem;
+    }
+  }
+  @media (max-width: 786px) {
+    .fasal-fresh-logo {
+      max-width: 80px;
+    }
+    #fasal-fresh-wrp-banner {
+      background: linear-gradient(
+          180deg,
+          #efcc4e90 0.14%,
+          #efcc4e1b 11.99%,
+          rgba(239, 204, 78, 0) 65.88%,
+          rgb(255, 255, 255) 90.88%
+        ),
+        url("../assets/images/fasal-fresh/banner/banner-bg.jpg") no-repeat;
+    }
+    .fruit-basket {
+      width: 70%;
+    }
+    br {
+      display: none;
+    }
+  }
+</style>

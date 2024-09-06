@@ -1,0 +1,400 @@
+---
+const { className } = Astro.props;
+---
+
+<section
+  id="contact-form"
+  class="lets-connect-section relative blade-bottom-padding"
+>
+  <div class="container-sm blade-top-padding">
+    <div data-aos="fade-up" class="text-center">
+      <h1 class="fw-bold">
+        Any messages for us or our partner <br /> farmers?
+        <span class="text-green"> We are listening.</span>
+      </h1>
+    </div>
+    <form id="form" class="row p-md-5 p-2 gap-x-2 gap-y mx-auto">
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
+        <label for="name">Name*</label>
+        <input class="w-100 input-style" id="name" name="name" type="text" />
+        <div class="error"></div>
+      </div>
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
+        <label for="name">Last Name</label>
+        <input class="w-100 input-style" id="lname" name="lname" type="text" />
+        <div class="error"></div>
+      </div>
+
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
+        <label for="phone">Phone*</label>
+        <input
+          class="w-100 input-style"
+          id="phone"
+          name="phone"
+          type="number"
+          autocomplete="off"
+        />
+        <div class="error"></div>
+      </div>
+
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
+        <label for="area">Area*</label>
+        <input
+          class="w-100 input-style"
+          id="area"
+          name="area"
+          type="text"
+          autocomplete="off"
+        />
+        <div class="error"></div>
+      </div>
+
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
+        <label for="society">Society*</label>
+        <input
+          class="w-100 input-style"
+          id="society"
+          name="society"
+          type="text"
+          autocomplete="off"
+        />
+        <div class="error"></div>
+      </div>
+
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-6">
+        <label for="pincode">Pincode*</label>
+        <input
+          class="w-100 input-style"
+          id="pincode"
+          name="pincode"
+          type="number"
+          autocomplete="off"
+        />
+        <div class="error"></div>
+      </div>
+
+      <div class="d-flex gap-1 mt-1 mt-md-2 flex-column col-md-12">
+        <label for="message">Message</label>
+        <textarea
+          class="w-100 input-style p-2"
+          id="message"
+          name="message"
+          rows="3"></textarea>
+        <div class="error"></div>
+      </div>
+
+      <div class="d-flex justify-content-center mt-4">
+        <button class="fasal-fresh-btn-green" type="submit"> Send Email</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div id="popup-wrapper" class="d-none m-auto">
+  <div
+    class="mx-auto w-100 h-100 d-flex justify-content-center align-items-center"
+  >
+    <div id="success-msg-wrapper" class="d-none">
+      <div class="text-center mx-auto p-5 bg-white rounded-2">
+        <div class="">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="55"
+            height="55"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="green"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-mail-check"
+            ><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"
+            ></path><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+            ></path><path d="m16 19 2 2 4-4"></path></svg
+          >
+        </div>
+        <h3 class="text-black font-bold mt-2">Thank You</h3>
+
+        <h5 class="text-black fw-normal">
+          Your response has been recorded successfully.
+        </h5>
+      </div>
+    </div>
+    <div id="failed-msg-wrapper" class="d-none">
+      <div class="text-center mx-auto p-5 bg-white rounded-2">
+        <div class="">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="55"
+            height="55"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="red"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-circle-slash"
+            ><line x1="9" x2="15" y1="15" y2="9"></line><circle
+              cx="12"
+              cy="12"
+              r="10"></circle></svg
+          >
+        </div>
+        <h3 class="text-black font-bold mt-2">Couldn't connect</h3>
+
+        <h5 class="text-black fw-normal">Please try again later!</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import emailjs from "@emailjs/browser";
+  const form = document.getElementById("form") as HTMLFormElement;
+  const name = document.getElementById("name") as HTMLInputElement;
+  const lname = document.getElementById("lname") as HTMLInputElement;
+  const area = document.getElementById("area") as HTMLInputElement;
+  const society = document.getElementById("society") as HTMLInputElement;
+  const phone = document.getElementById("phone") as HTMLInputElement;
+  const pincode = document.getElementById("pincode") as HTMLInputElement;
+  const message = document.getElementById("message") as HTMLTextAreaElement;
+  const popup = document.getElementById("popup-wrapper") as HTMLDivElement;
+  const success = document.getElementById(
+    "success-msg-wrapper"
+  ) as HTMLDivElement;
+  const failed = document.getElementById(
+    "failed-msg-wrapper"
+  ) as HTMLDivElement;
+  const submit = document.getElementById("submit-btn") as HTMLButtonElement;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    var data = {
+      nameValue: name.value.trim(),
+      lnameValue: lname.value.trim(),
+      areaValue: area.value.trim(),
+      societyValue: society.value.trim(),
+      phoneValue: phone.value.trim(),
+      pincodeValue: pincode.value.trim(),
+      messageValue: message.value.trim(),
+    };
+
+    const isTrue = await validateInputs(data);
+    // console.log("ISTrUE", isTrue);
+
+    if (isTrue) {
+      await sendEmail();
+    } else {
+      // console.log("error");
+    }
+  });
+
+  function sendEmail() {
+    emailjs
+      .sendForm(
+        "fasal-se-rv-ice-id",
+        "template_9avl7o7",
+        form,
+        "vYEyiojkuopxJjifx"
+      )
+      .then(
+        (result) => {
+          console.log("SUCCESS!", result);
+          if (result.status === 200) {
+            failed.classList.remove("d-block");
+            popup.classList.remove("d-none");
+            popup.classList.add("d-block");
+            setInterval(() => {
+              popup.classList.add("d-none");
+            }, 3000);
+            success.classList.remove("d-none");
+            success.classList.add("d-block");
+            form.reset();
+          } else {
+            success.classList.remove("d-block");
+            popup.classList.remove("d-none");
+            popup.classList.add("d-block");
+            failed.classList.remove("d-none");
+            failed.classList.add("d-block");
+          }
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+  }
+
+  // async function sendEmail() {
+  //   const apiKey =
+  //     "00B5DC7665B08D246C2A21D4BF2AD55A00594A1C1C79E53872B458673294032D792690F634DCB492EBE81B437AB55898";
+  //   const fromEmail = "ved.blacksof@gmail.com";
+  //   const toEmail = "ved.blacksof@gmail.com";
+  //   const subject = "enquiry";
+  //   const body = "This is a test email sent from Astro.js with  Email.";
+  //   const templateID = "";
+  //   try {
+  //     const response = await fetch(
+  //       "https://api.elasticemail.com/v2/email/send",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/x-www-form-urlencoded",
+  //         },
+  //         body: new URLSearchParams({
+  //           apiKey: apiKey,
+  //           subject: subject,
+  //           from: fromEmail,
+  //           to: toEmail,
+  //           bodyText: body,
+  //         }),
+  //       }
+  //     );
+
+  //     if (response.ok) {
+  //       // console.log("Email sent successfully");
+  //     } else {
+  //       console.error("Failed to send email:", response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error sending email:", error);
+  //   }
+  // }
+
+  const setError = (element: any, message: any) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector(".error");
+
+    errorDisplay.innerText = message;
+    inputControl.classList.remove("success");
+  };
+
+  const setSuccess = (element: any) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector(".error");
+
+    errorDisplay.innerText = "";
+    inputControl.classList.add("success");
+  };
+
+  const validateInputs = (data: any) => {
+    var arr: any = [];
+
+    if (data.nameValue === "") {
+      setError(name, "Name is required. ");
+      arr[0] = false;
+    } else {
+      setSuccess(name);
+      arr[0] = true;
+    }
+
+    if (data.phoneValue === "") {
+      setError(phone, "Phone is required");
+      arr[2] = false;
+    } else if (data.phoneValue.length < 10) {
+      setError(phone, "Enter a valid phone number");
+      arr[2] = false;
+    } else if (data.phoneValue.length > 10) {
+      setError(phone, "Enter a valid phone number");
+      arr[2] = false;
+    } else {
+      setSuccess(phone);
+      arr[2] = true;
+    }
+
+    if (data.areaValue === "") {
+      setError(area, "Area is required. ");
+      arr[3] = false;
+    } else {
+      setSuccess(area);
+      arr[3] = true;
+    }
+
+    if (data.societyValue === "") {
+      setError(society, "Society is required. ");
+      arr[4] = false;
+    } else {
+      setSuccess(society);
+      arr[4] = true;
+    }
+    if (data.pincodeValue === "") {
+      setError(pincode, "Pincode is required. ");
+      arr[5] = false;
+    } else {
+      setSuccess(pincode);
+      arr[5] = true;
+    }
+
+    if (data.messageValue === "") {
+      setError(message, "Message is required. ");
+      arr[6] = false;
+    } else {
+      setSuccess(message);
+      arr[6] = true;
+    }
+
+    let isValid = false;
+
+    // console.log(isValid, arr, "before");
+    if (arr.includes(false)) {
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+    // console.log(isValid, arr, "after");
+
+    return isValid;
+  };
+</script>
+
+<style>
+  form {
+    width: 75%;
+  }
+  label {
+    font-size: 1rem;
+  }
+  .error {
+    color: red;
+    font-size: 14px;
+  }
+  .input-style:focus {
+    outline: 1px solid rgba(0, 0, 0, 0.507);
+  }
+  .input-style {
+    border: 1px solid rgba(128, 128, 128, 0.378);
+    border-radius: 4px;
+    padding: 6px 10px;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  #popup-wrapper {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 222, 0.5);
+  }
+  #popup-wrapper svg {
+    width: 50px;
+  }
+  @media (max-width: 786px) {
+    form {
+      width: 95%;
+    }
+    label {
+      font-size: 0.8rem;
+    }
+    .input-style {
+      padding: 3px 5px;
+    }
+  }
+</style>

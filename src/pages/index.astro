@@ -1,0 +1,26 @@
+---
+import LetsConnect from "../components/letsConnect.astro";
+import WhatsDifferent from "../components/whatsDifferent.astro";
+import Banner from "../components/banner.astro";
+import InfiniteCarousel from "../components/inifiniteCarousel.astro";
+import OurImpact from "../components/ourImpact.astro";
+import WhatWeDo from "../components/whatWeDo.astro";
+import Hello from "../components/hello.astro";
+import Layout from "../layouts/Layout.astro";
+import FasalVideo from "../components/fasalVideo.astro";
+import Footer from "../components/footer.astro";
+import "./landingPage.css";
+import "bootstrap/dist/css/bootstrap.css";
+---
+
+<Layout title="Welcome to Astro.">
+  <Banner />
+  <InfiniteCarousel />
+  <WhatsDifferent />
+  <WhatWeDo />
+  <FasalVideo />
+  <OurImpact />
+  <LetsConnect />
+  <Hello />
+  <Footer />
+</Layout>
