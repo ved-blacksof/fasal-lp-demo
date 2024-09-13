@@ -101,26 +101,6 @@
   });
 </script>
 
-<script>
-  const wrap = document.querySelector(".fasal-video-wrp ") as HTMLDivElement;
-  const bottomNav = document.querySelector(
-    ".bottom-navigation"
-  ) as HTMLDivElement;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // console.log("The section is in view");
-        bottomNav.style.transform = "translateY(-100px)";
-      } else {
-        // console.log("The section is not in view");
-        bottomNav.style.transform = "translateY(100px)";
-      }
-    });
-  });
-
-  observer.observe(wrap);
-</script>
-
 <style>
   .video-modal .video-wrp {
     max-width: 60%;
@@ -184,11 +164,7 @@
   }
 
   @media (max-width: 786px) {
-    .fasal-video-wrp {
-      height: 280px;
-      min-height: 250px;
-    }
-    .fasal-video-wrp .play-btn svg {
+    .play-btn svg {
       width: 50px;
     }
     .close-btn {
