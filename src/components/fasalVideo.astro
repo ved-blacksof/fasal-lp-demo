@@ -64,9 +64,7 @@
         class="fasal-fresh-btn text-decoration-none z-3 lh-base">Contact Us</a
       >
 
-      <button
-        class="play-btn text-white d-flex align-items-center gap-md-1 gap-2"
-      >
+      <button class="play-btn text-white d-flex align-items-center">
         <svg height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 71">
           <path
             d="M36.0037 65.0949C52.3024 65.0949 65.5152 51.8822 65.5152 35.5834C65.5152 19.2847 52.3024 6.07202 36.0037 6.07202C19.705 6.07202 6.49231 19.2847 6.49231 35.5834C6.49231 51.8822 19.705 65.0949 36.0037 65.0949Z"
@@ -163,8 +161,12 @@
     transition: all 300ms ease;
   }
 
-  @media (max-width: 786px) {
+  .play-btn h3,
+  .fasal-fresh-btn {
+    white-space: nowrap;
+  }
 
+  @media (max-width: 786px) {
     .fasal-video-wrp {
       height: 300px;
       min-height: 250px;
