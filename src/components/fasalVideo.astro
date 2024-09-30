@@ -56,7 +56,7 @@
 
   <!-- bottom navigation -->
   <nav
-    class="bottom-navigation bg-green py-3 px-3 position-fixed left-0 right-0 mx-auto w-100 z-3"
+    class="bottom-navigation bg-green position-fixed left-0 right-0 mx-auto w-100 z-3"
   >
     <div class="container d-flex justify-content-between">
       <a
@@ -100,6 +100,9 @@
 </script>
 
 <style>
+  .bottom-navigation {
+    padding: 0.7rem;
+  }
   .video-modal .video-wrp {
     max-width: 60%;
   }
@@ -120,9 +123,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url("../assets/images/fasal-fresh/fasal-video.jpg");
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.4)
+      ),
+      url("../assets/images/fasal-fresh/fasal-video.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: top;
   }
   .fasal-video-wrp .play-btn:hover h3 {
     color: #ffe366;
