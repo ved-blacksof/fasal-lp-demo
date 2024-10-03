@@ -1,8 +1,15 @@
 <section class="fasal-video-wrp px-md-5 py-md-5 py-4">
   <div
-    class="border rounded-4 h-100 w-75 d-flex flex-column justify-content-center align-items-center"
+    class="border rounded-4 h-100 w-border d-flex flex-column justify-content-center align-items-center"
   >
-    <h1 class="text-white font-bold">Why Fasal Fresh...</h1>
+    <!-- <div class="">
+      <img
+        class="fasal-fresh-logo "
+        src="assets/images/fasal-fresh/banner/fasal-fresh-logo.png"
+        alt=""
+      />
+    </div> -->
+    <h1 class="text-yellow font-bold">Why Fasal Fresh...</h1>
     <button
       class="play-btn text-white d-flex align-items-center gap-md-3 gap-2 mt-md-3"
     >
@@ -100,6 +107,11 @@
 </script>
 
 <style>
+  .fasal-fresh-logo {
+    height: 150px;
+    width: auto;
+    margin-bottom: 20px;
+  }
   .bottom-navigation {
     padding: 0.7rem;
   }
@@ -118,20 +130,25 @@
   .fasal-video-wrp {
     height: 100vh;
     min-height: 550px;
-    max-height: 800px;
+    max-height: 700px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.9),
+        rgba(0, 0, 0, 0.7),
         rgba(0, 0, 0, 0.4)
       ),
-      url("../assets/images/fasal-fresh/fasal-video.jpg");
+      url("../assets/images/fasal-fresh/fasal-video.png");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: top right;
+    background-position: bottom center;
+  }
+
+  .w-border {
+    width: 85%;
   }
   .fasal-video-wrp .play-btn:hover h3 {
     color: #ffe366;
